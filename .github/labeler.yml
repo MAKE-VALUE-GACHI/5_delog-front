@@ -1,0 +1,11 @@
+⚙ feat:
+  - head-branch: ['^feat', 'feat']
+
+🛠️ fix:
+  - head-branch: ['^fix', 'fix']
+
+💻 style:
+  - head-branch: ['^style', 'style']
+
+🚀 chore:
+  - head-branch: ['^chore', 'chore']
