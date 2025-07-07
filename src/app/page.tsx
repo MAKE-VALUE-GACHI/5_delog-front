@@ -11,7 +11,7 @@ export default function Page() {
     <div>
       {status === "authenticated" ? (
         <>
-          <p>Welcome, {session?.user?.name}</p>
+          <p>Welcome,{session?.user?.name}</p>
           <button onClick={() => signOut()}>Sign Out</button>
         </>
       ) : (
