@@ -12,4 +12,3 @@ jobs:
         with:
           assignees: ${{ github.actor }} # assign - PR 만든 사람
           reviewers: m9-m9,nno3onn # 리뷰어 추가
-          exclude-author: true # 작성자는 리뷰어 제외
