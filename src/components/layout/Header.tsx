@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils';
+
 interface HeaderProps {
     children: React.ReactNode;
     className?: string;
@@ -5,7 +7,7 @@ interface HeaderProps {
 
 export default function Header({ children, className }: HeaderProps) {
     return (
-        <header className={`h-12 px-4 flex items-center ${className}`}>
+        <header className={cn('h-12 px-4 flex items-center', className)}>
             {children}
         </header>
     );
