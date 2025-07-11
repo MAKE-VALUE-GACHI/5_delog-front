@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@source "./src/**/*.{js,ts,jsx,tsx}";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -121,6 +123,6 @@
         @apply border-border outline-ring/50;
     }
     body {
-        @apply max-w-[390px] mx-auto border-l border-r min-h-screen;
+        @apply bg-background text-foreground;
     }
 }
