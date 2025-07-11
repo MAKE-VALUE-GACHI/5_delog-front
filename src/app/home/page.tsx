@@ -1,11 +1,11 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import Container from '@/components/layout/Container';
 
 export default function App() {
     return (
-        <>
-            <h1>홈페이지</h1>
-        </>
+        <Container headerType="home">
+            <p>홈페이지</p>
+        </Container>
     );
 }
