@@ -1,18 +1,27 @@
 'use client';
 
 import Title from './Title';
-import { usePostStore } from '@/store/usePostStore';
+import { IMenu, usePostStore } from '@/store/usePostStore';
 import { commonBox } from './commonCSS';
 import CButton from '@/components/Button';
+import { useRouter } from 'next/navigation';
 
 export default function MenuList() {
-    const { menuList, setMenuList } = usePostStore();
+    const router = useRouter();
+    const { menuList, setMenuList, setUpdateMenu } = usePostStore();
 
-    const handleUpdate = (index: number) => {};
+    const handleUpdate = (menu: IMenu) => {
+        setUpdateMenu(menu);
+        router.push('/add-history/add');
+    };
 
     const handleDelete = (index: number) => {
         const newMenuList = menuList.filter((menu, idx) => idx !== index);
         setMenuList(newMenuList);
+    };
+
+    const handleAdd = () => {
+        router.push('/add-history/add');
     };
 
     return (
@@ -32,7 +41,7 @@ export default function MenuList() {
                     <div className="flex gap-4">
                         <div
                             className="text-[#3B82F6] text-[14px] hover:cursor-pointer"
-                            onClick={() => handleUpdate(index)}
+                            onClick={() => handleUpdate(menu)}
                         >
                             수정
                         </div>
@@ -45,7 +54,9 @@ export default function MenuList() {
                     </div>
                 </div>
             ))}
-            <CButton type="secondary">메뉴 추가하기</CButton>
+            <CButton buttonType="secondary" onClick={handleAdd}>
+                메뉴 추가하기
+            </CButton>
         </div>
     );
 }

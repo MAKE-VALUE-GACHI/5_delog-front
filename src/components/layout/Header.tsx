@@ -20,6 +20,7 @@ export default function Header({ className, type, title }: HeaderProps) {
             >
                 <a href="#">
                     <Image
+                        className="hover:cursor-pointer"
                         src="/settings.svg"
                         alt="환경설정"
                         width={24}
@@ -36,6 +37,7 @@ export default function Header({ className, type, title }: HeaderProps) {
         return (
             <header className={cn('h-12 flex items-center', className)}>
                 <Image
+                    className="hover:cursor-pointer"
                     onClick={() => router.back()}
                     src="/arrow_back.svg"
                     alt="뒤로가기"

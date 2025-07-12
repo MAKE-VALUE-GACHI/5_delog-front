@@ -24,12 +24,16 @@ interface PostState {
     menuList: IMenu[];
     cost: string;
     date: string;
+
+    updateMenu: IMenu | null;
 }
 
 interface PostAction {
     setMenuList: (menuList: IMenu[]) => void;
     setCost: (cost: string) => void;
     setDate: (date: string) => void;
+
+    setUpdateMenu: (updateMenu: IMenu | null) => void;
 }
 
 export const usePostStore = create<PostState & PostAction>()(
@@ -37,9 +41,11 @@ export const usePostStore = create<PostState & PostAction>()(
         menuList: mockMenuData,
         cost: '',
         date: getToday(),
+        updateMenu: null,
 
         setMenuList: menuList => set({ menuList }),
         setCost: cost => set({ cost }),
         setDate: date => set({ date }),
+        setUpdateMenu: updateMenu => set({ updateMenu }),
     }))
 );
