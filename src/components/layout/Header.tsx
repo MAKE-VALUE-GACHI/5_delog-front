@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 
 interface HeaderProps {
     className?: string;
@@ -12,6 +12,8 @@ interface HeaderProps {
 
 export default function Header({ className, type, title }: HeaderProps) {
     const router = useRouter();
+    const pathname = usePathname();
+    const isReportPage = pathname === '/report';
 
     if (type === 'home')
         return (
@@ -39,7 +41,7 @@ export default function Header({ className, type, title }: HeaderProps) {
                 <Image
                     className="hover:cursor-pointer"
                     onClick={() => router.back()}
-                    src="/arrow_back.svg"
+                    src={`/arrow_back${isReportPage ? '_white' : ''}.svg`}
                     alt="뒤로가기"
                     width={24}
                     height={24}

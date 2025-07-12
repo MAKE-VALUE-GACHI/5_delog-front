@@ -2,15 +2,17 @@ import { ReactNode } from 'react';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { VariantProps } from 'class-variance-authority';
 
+export type TButtonType = 'primary' | 'secondary' | 'step';
+
 interface ButtonProps {
-    buttonType?: 'primary' | 'secondary' | 'step';
+    buttonType?: buttonType;
     children: ReactNode;
 }
 
 const primary = 'bg-[#3B82F6] hover:cursor-pointer hover:bg-blue-300';
 const secondary =
     'text-[#3B82F6] bg-[#EFF6FF] hover:cursor-pointer hover:text-white hover:bg-[#3B82F6]';
-const step = 'text-black bg-white hover:text-white hover:bg-black';
+const step = 'text-black bg-white hover:text-white hover:bg-[#bebebe]';
 
 export default function CButton({
     buttonType = 'primary',
@@ -34,7 +36,10 @@ export default function CButton({
         }
     };
     return (
-        <Button className={`${getCSS()} p-7 w-[100%] rounded-xl`} {...props}>
+        <Button
+            className={`${getCSS()} p-7 w-[100%] rounded-xl hover:cursor-pointer`}
+            {...props}
+        >
             {children}
         </Button>
     );
