@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -5,9 +7,10 @@ import { useRouter } from 'next/navigation';
 interface HeaderProps {
     className?: string;
     type: 'home' | 'back';
+    title?: string;
 }
 
-export default function Header({ className, type }: HeaderProps) {
+export default function Header({ className, type, title }: HeaderProps) {
     const router = useRouter();
 
     if (type === 'home')
@@ -23,6 +26,9 @@ export default function Header({ className, type }: HeaderProps) {
                         height={24}
                     />
                 </a>
+                <div className="text-[#0F172A] text-5 font-semibold">
+                    {title}
+                </div>
             </header>
         );
 
@@ -33,9 +39,12 @@ export default function Header({ className, type }: HeaderProps) {
                     onClick={() => router.back()}
                     src="/arrow_back.svg"
                     alt="뒤로가기"
-                    width={9}
-                    height={19}
+                    width={24}
+                    height={24}
                 />
+                <div className="text-[#0F172A] text-5 font-semibold">
+                    {title}
+                </div>
             </header>
         );
 }
