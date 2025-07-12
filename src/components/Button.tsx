@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 
 interface ButtonProps {
-    type: 'primary' | 'secondary' | 'step';
+    type?: 'primary' | 'secondary' | 'step';
     children: ReactNode;
 }
 
@@ -11,7 +11,7 @@ const secondary =
     'text-[#3B82F6] bg-[#EFF6FF] hover:cursor-pointer hover:text-white hover:bg-[#3B82F6]';
 const step = 'text-black bg-white hover:text-white hover:bg-black';
 
-export default function CButton({ type, children }: ButtonProps) {
+export default function CButton({ type = 'primary', children }: ButtonProps) {
     const getCSS = () => {
         switch (type) {
             case 'primary':
