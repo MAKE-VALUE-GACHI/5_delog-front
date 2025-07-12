@@ -13,7 +13,7 @@ interface HeaderProps {
 export default function Header({ className, type, title }: HeaderProps) {
     const router = useRouter();
     const pathname = usePathname();
-    const isReportPage = pathname === '/report';
+    const isReportPage = pathname === '/report/[id]';
 
     if (type === 'home')
         return (
