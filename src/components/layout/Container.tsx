@@ -15,7 +15,7 @@ export default function Container({
     return (
         <div
             className={cn(
-                'min-h-screen max-w-[390px] mx-auto border-l border-r px-4',
+                'min-h-screen min-w-screen max-w-[393px] mx-auto border-l border-r px-4',
                 bg
             )}
         >
