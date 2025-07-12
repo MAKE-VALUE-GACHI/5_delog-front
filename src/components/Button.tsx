@@ -5,7 +5,7 @@ import { VariantProps } from 'class-variance-authority';
 export type TButtonType = 'primary' | 'secondary' | 'step';
 
 interface ButtonProps {
-    buttonType?: buttonType;
+    buttonType?: TButtonType;
     children: ReactNode;
 }
 
