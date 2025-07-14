@@ -1,10 +1,10 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchOrderHistory } from './api';
 import { OrderHistoryResponse } from './types';
-
+import { queryKeys } from '@/lib/queryKeys';
 export const useOrderHistory = (pageSize: number = 3) => {
     return useInfiniteQuery({
-        queryKey: ['orderHistory', pageSize.toString()],
+        queryKey: queryKeys.orderHistory.infinite(pageSize).queryKey,
         queryFn: ({ pageParam }: { pageParam: number }) =>
             fetchOrderHistory({ pageParam, pageSize }),
         initialPageParam: 0,
