@@ -43,6 +43,8 @@
     --color-sidebar-ring: var(--sidebar-ring);
 
     /* ---------- shadcn/ui -------------- */
+
+    --radius-20: 20px;
 }
 
 :root {

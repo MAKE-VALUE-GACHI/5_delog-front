@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
@@ -15,14 +16,14 @@ export default function Header({ className, type }: HeaderProps) {
             <header
                 className={cn('h-12 flex items-center justify-end', className)}
             >
-                <a href="#">
+                <Link href="#">
                     <Image
                         src="/settings.svg"
                         alt="환경설정"
                         width={24}
                         height={24}
                     />
-                </a>
+                </Link>
             </header>
         );
 
