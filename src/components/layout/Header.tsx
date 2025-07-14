@@ -1,14 +1,19 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 
 interface HeaderProps {
     className?: string;
     type: 'home' | 'back';
+    title?: string;
 }
 
-export default function Header({ className, type }: HeaderProps) {
+export default function Header({ className, type, title }: HeaderProps) {
     const router = useRouter();
+    const pathname = usePathname();
+    const isReportPage = pathname === '/report/[id]';
 
     if (type === 'home')
         return (
@@ -17,12 +22,16 @@ export default function Header({ className, type }: HeaderProps) {
             >
                 <a href="#">
                     <Image
+                        className="hover:cursor-pointer"
                         src="/settings.svg"
                         alt="환경설정"
                         width={24}
                         height={24}
                     />
                 </a>
+                <div className="text-[#0F172A] text-5 font-semibold">
+                    {title}
+                </div>
             </header>
         );
 
@@ -30,12 +39,16 @@ export default function Header({ className, type }: HeaderProps) {
         return (
             <header className={cn('h-12 flex items-center', className)}>
                 <Image
+                    className="hover:cursor-pointer"
                     onClick={() => router.back()}
-                    src="/arrow_back.svg"
+                    src={`/arrow_back${isReportPage ? '_white' : ''}.svg`}
                     alt="뒤로가기"
-                    width={9}
-                    height={19}
+                    width={24}
+                    height={24}
                 />
+                <div className="text-[#0F172A] text-5 font-semibold">
+                    {title}
+                </div>
             </header>
         );
 }
