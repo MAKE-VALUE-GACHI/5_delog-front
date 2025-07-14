@@ -34,19 +34,17 @@ export default function MenuList() {
                 >
                     <div className="flex gap-2 items-center">
                         <p>{menu.name}</p>
-                        <p className="text-[14px] text-[#64748B]">
-                            {menu.count}개
-                        </p>
+                        <p className="text-sm text-[#64748B]">{menu.count}개</p>
                     </div>
                     <div className="flex gap-4">
                         <div
-                            className="text-[#3B82F6] text-[14px] hover:cursor-pointer"
+                            className="text-[#3B82F6] text-sm hover:cursor-pointer"
                             onClick={() => handleUpdate(menu)}
                         >
                             수정
                         </div>
                         <div
-                            className="text-[#EF4444] text-[14px] hover:cursor-pointer"
+                            className="text-[#EF4444] text-sm hover:cursor-pointer"
                             onClick={() => handleDelete(index)}
                         >
                             삭제

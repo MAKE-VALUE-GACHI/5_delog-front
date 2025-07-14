@@ -23,8 +23,8 @@ export default function ReportLayout({
     return (
         <div className="flex flex-col items-center">
             <div className="my-4 text-center" style={{ color }}>
-                {subtitle && <p className="text-[14px]">{subtitle}</p>}
-                <div className="text-[30px] font-semibold">{title}</div>
+                {subtitle && <p className="text-sm">{subtitle}</p>}
+                <div className="text-3xl font-semibold">{title}</div>
             </div>
 
             {children}

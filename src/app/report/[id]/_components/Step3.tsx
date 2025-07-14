@@ -32,7 +32,7 @@ export default function Step3({ goNext }: Step3Props) {
                 rightContent="2일"
             />
 
-            <p className="text-[#BBF7D0] mt-10 text-[18px]">
+            <p className="text-[#BBF7D0] mt-10 text-lg">
                 지난 주에 비해
                 <span className="font-semibold text-white"> 70% 증가</span>
                 했어요

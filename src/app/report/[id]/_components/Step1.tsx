@@ -32,7 +32,7 @@ export default function Step1({ goNext }: Step1Props) {
                 rightContent="9,600 원"
             />
 
-            <p className="text-[#FECACA] mt-10 text-[18px]">
+            <p className="text-[#FECACA] mt-10 text-lg">
                 지난 주에 비해
                 <span className="font-semibold text-white"> 20% 증가</span>
                 했어요

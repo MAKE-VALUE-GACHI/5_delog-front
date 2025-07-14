@@ -33,17 +33,17 @@ export default function Card({
             </div>
             <div>
                 <p>{subtitle}</p>
-                <p className="font-semibold text-[48px]">{title}</p>
+                <p className="font-semibold text-5xl">{title}</p>
             </div>
 
             <div className="flex justify-between">
                 <div className="flex-1">
                     <p>{leftTitle}</p>
-                    <p className="font-semibold text-[18px]">{leftContent}</p>
+                    <p className="font-semibold text-lg">{leftContent}</p>
                 </div>
                 <div className="flex-1">
                     <p>{rightTitle}</p>
-                    <p className="font-semibold text-[18px]">{rightContent}</p>
+                    <p className="font-semibold text-lg">{rightContent}</p>
                 </div>
             </div>
         </div>

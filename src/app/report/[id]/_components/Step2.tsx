@@ -33,7 +33,7 @@ export default function Step2({ goNext }: Step2Props) {
                 rightContent="9,600 원"
             />
 
-            <p className="text-[#A16207] mt-10 text-[18px]">
+            <p className="text-[#A16207] mt-10 text-lg">
                 지난 주에 비해
                 <span className="font-semibold text-black"> 3% 감소</span>
                 했어요

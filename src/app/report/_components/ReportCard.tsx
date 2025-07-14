@@ -22,9 +22,9 @@ export default function ReportCard({
             className="p-4 rounded-xl bg-white hover:cursor-pointer"
             onClick={() => router.push(`/report/${id}`)}
         >
-            <p className="color-[#64748B] text-[14px]">{subtitle}</p>
+            <p className="color-[#64748B] text-sm">{subtitle}</p>
             <p className="font-semibold text-5">{title}</p>
-            <p className="color-[#64748B] text-[14px]">{detail}</p>
+            <p className="color-[#64748B] text-sm">{detail}</p>
         </div>
     );
 }

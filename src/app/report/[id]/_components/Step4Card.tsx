@@ -20,18 +20,18 @@ export default function Step4Card({
     return (
         <div className="w-[100%] bg-white flex flex-col gap-2 p-4 rounded-xl">
             <div>
-                <p className="text-[#64748B] text-[14px]">{title1}</p>
-                <p className="font-semibold text-[20px]" style={{ color }}>
+                <p className="text-[#64748B] text-sm">{title1}</p>
+                <p className="font-semibold text-xl" style={{ color }}>
                     {content1}
                 </p>
             </div>
             <div className="flex justify-between">
                 <div className="w-[50%]">
-                    <p className="text-[#64748B] text-[14px]">{title2}</p>
+                    <p className="text-[#64748B] text-sm">{title2}</p>
                     <p>{content2}</p>
                 </div>
                 <div className="w-[50%]">
-                    <p className="text-[#64748B] text-[14px]">{title3}</p>
+                    <p className="text-[#64748B] text-sm">{title3}</p>
                     <p>{content3}</p>
                 </div>
             </div>
