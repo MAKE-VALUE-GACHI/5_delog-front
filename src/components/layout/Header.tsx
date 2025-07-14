@@ -19,7 +19,10 @@ export default function Header({ className, type, title }: HeaderProps) {
     if (type === 'home')
         return (
             <header
-                className={cn('h-12 flex items-center justify-end', className)}
+                className={cn(
+                    'h-12 flex items-center justify-end px-4',
+                    className
+                )}
             >
                 <Link href="#">
                     <Image

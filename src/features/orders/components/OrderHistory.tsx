@@ -112,7 +112,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
                 )}
                 options={{
                     align: 'start',
-                    containScroll: 'trimSnaps', // 변경
+                    containScroll: 'trimSnaps',
                     dragFree: false,
                     slidesToScroll: 1,
                 }}

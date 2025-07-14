@@ -1,7 +1,7 @@
 'use client';
 
 import SectionTitle from '@/components/common/SectionTitle';
-import Container from '@/components/layout/Container';
+import FullContainer from '@/components/layout/FullContainer';
 import { Button } from '@/components/ui/button';
 import {
     Carousel,
@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 export default function App() {
     return (
-        <Container headerType="home">
+        <FullContainer headerType="home">
             <div className="space-y-8">
                 <section className="px-4">
                     <div className="p-4 rounded-20 border-2 border-blue-200 box-border bg-white mt-4">
@@ -85,6 +85,7 @@ export default function App() {
                         hasLink={true}
                         linkText="전체 보기"
                         linkHref=""
+                        hasPadding={true}
                     />
                     <Carousel
                         orientation="horizontal"
@@ -120,13 +121,13 @@ export default function App() {
                         </CarouselContent>
                     </Carousel>
                 </section>
-                <section>
+                <section className="px-4">
                     <SectionTitle title="기록 된 배달 내역" hasLink={false} />
                     <div>
                         <OrderHistory pageSize={3} />
                     </div>
                 </section>
             </div>
-        </Container>
+        </FullContainer>
     );
 }

@@ -2,10 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { EngineType } from 'embla-carousel';
 import { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
-
-const DefaultLoadingSpinner = () => (
-    <span className="border-4 border-blue-500 border-l-white absolute inset-0 m-auto animate-spin rounded-full w-8 h-8" />
-);
+import Spiiner from '../Spinner';
 
 type PropType<T> = {
     items: T[];
@@ -172,17 +169,13 @@ const InfiniteScroll = <T,>({
                     ))}
                     {hasMore && (loadingMore || loading) && (
                         <div
-                            className={`relative flex-none min-w-0 flex items-center justify-center z-20 ${
+                            className={`relative flex-none min-w-0 flex items-center justify-center ${
                                 orientation === 'vertical'
                                     ? 'w-full h-40'
                                     : 'w-60 h-60'
                             }`}
                         >
-                            {renderLoading ? (
-                                renderLoading()
-                            ) : (
-                                <DefaultLoadingSpinner />
-                            )}
+                            {renderLoading ? renderLoading() : <Spiiner />}
                         </div>
                     )}
                 </div>

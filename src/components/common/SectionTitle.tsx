@@ -7,6 +7,7 @@ interface SectionTitleProps {
     linkText?: string;
     hasLink?: boolean;
     linkHref?: string;
+    hasPadding?: boolean;
 }
 
 export default function SectionTitle({
@@ -14,9 +15,12 @@ export default function SectionTitle({
     linkText = '',
     hasLink = false,
     linkHref = '',
+    hasPadding = false,
 }: SectionTitleProps) {
     return (
-        <div className="flex items-center gap-1 w-full">
+        <div
+            className={`flex items-center gap-1 w-full ${hasPadding ? 'px-4' : ''}`}
+        >
             <p className="text-slate-600 font-medium text-sm">{title}</p>
             <Separator orientation="horizontal" className="flex-1" />
             {hasLink && (

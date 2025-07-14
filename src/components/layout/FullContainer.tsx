@@ -7,13 +7,18 @@ interface ContainerProps {
     headerType: 'home' | 'back';
 }
 
-export default function Container({
+export default function FullContainer({
     children,
     bg = 'bg-blue-50',
     headerType = 'home',
 }: ContainerProps) {
     return (
-        <div className={cn('border-l border-r px-4', bg)}>
+        <div
+            className={cn(
+                'min-h-screen max-w-[390px] mx-auto border-l border-r box-border',
+                bg
+            )}
+        >
             <Header type={headerType} />
             <main>{children}</main>
         </div>
