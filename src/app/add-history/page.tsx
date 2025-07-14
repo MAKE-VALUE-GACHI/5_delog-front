@@ -18,7 +18,7 @@ export default function AddHistoryPage() {
     }, []);
 
     return (
-        <div className="p-4">
+        <div className="p-4 pb-40">
             <Header type="back" title="내역 추가" />
 
             <div className="mt-4">
@@ -31,7 +31,7 @@ export default function AddHistoryPage() {
                 <DeliveryDate />
             </div>
 
-            <div className="fixed bottom-10 w-full max-w-[361px]">
+            <div className="fixed bottom-10 w-full max-w-[361px] ">
                 <CButton>등록하기</CButton>
             </div>
         </div>
