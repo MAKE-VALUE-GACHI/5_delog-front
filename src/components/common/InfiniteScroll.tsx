@@ -169,10 +169,10 @@ const InfiniteScroll = <T,>({
                     ))}
                     {hasMore && (loadingMore || loading) && (
                         <div
-                            className={`relative flex-none min-w-0 flex items-center justify-center ${
+                            className={`loading-above-blur relative flex-none min-w-0 flex items-center justify-center ${
                                 orientation === 'vertical'
-                                    ? 'w-full h-40'
-                                    : 'w-60 h-60'
+                                    ? 'w-full h-40 pt-4'
+                                    : 'w-60 h-60 pl-4'
                             }`}
                         >
                             {renderLoading ? renderLoading() : <Spiiner />}

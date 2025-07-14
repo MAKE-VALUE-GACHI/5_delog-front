@@ -7,6 +7,7 @@ import {
 } from '../types';
 import InfiniteScroll from '@/components/common/InfiniteScroll';
 import { Button } from '@/components/ui/button';
+import Spiiner from '@/components/Spinner';
 
 interface OrderHistoryProps {
     pageSize?: number; // 한 번에 로드할 아이템 수
@@ -79,7 +80,6 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
         return [];
     }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    // 에러 상태
     if (isError) {
         return (
             <div className="p-4">
@@ -88,19 +88,14 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
         );
     }
 
-    // 첫 로딩 상태
     if (isLoading) {
-        return (
-            <div className="p-6">
-                <div className="flex justify-center items-center h-32">
-                    <div className="border-4 border-blue-500 border-l-white animate-spin rounded-full w-8 h-8" />
-                </div>
-            </div>
-        );
+        return <Spiiner position="bottom-offset" />;
     }
 
     return (
-        <div className={`${shouldShowBlur ? 'fade-blur-bottom' : ''}`}>
+        <div
+            className={`${shouldShowBlur ? 'fade-blur-bottom' : ''} ${isFetchingNextPage ? 'loading' : ''}`}
+        >
             <InfiniteScroll
                 items={processedItems}
                 loadMore={loadMore}
