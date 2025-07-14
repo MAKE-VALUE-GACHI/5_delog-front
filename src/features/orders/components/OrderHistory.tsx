@@ -8,6 +8,9 @@ import {
 import InfiniteScroll from '@/components/common/InfiniteScroll';
 import { Button } from '@/components/ui/button';
 import Spiiner from '@/components/Spinner';
+import FloatingButton from '@/components/FloatingButton';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface OrderHistoryProps {
     pageSize?: number; // 한 번에 로드할 아이템 수
@@ -53,6 +56,12 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
         getPreviousPageParam: firstPage => firstPage.nextCursor,
         maxPages: 5, // 임시로 최대 페이지 수 제한
     });
+
+    const router = useRouter();
+    const handleAddOrder = () => {
+        // 라우터 이동 또는 다른 로직
+        router.push('#');
+    };
 
     // 미리 보기용으로 추가데이터를 가져오기 때문에 마지막 인덱스 제거
     const processedItems = useMemo(() => {
@@ -112,6 +121,24 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
                     slidesToScroll: 1,
                 }}
             />
+            {!isFetchingNextPage && (
+                <FloatingButton
+                    className="left-1/2 transform -translate-x-1/2 py-4 px-8 bg-blue-500 rounded-[32]"
+                    onClick={handleAddOrder}
+                >
+                    <div className="flex">
+                        <Image
+                            src="add.svg"
+                            alt="내역 추가하기"
+                            width={24}
+                            height={24}
+                        />
+                        <p className="font-medium text-white text-base">
+                            내역 추가하기
+                        </p>
+                    </div>
+                </FloatingButton>
+            )}
         </div>
     );
 };
