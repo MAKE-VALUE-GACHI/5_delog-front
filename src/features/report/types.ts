@@ -9,3 +9,10 @@ export interface CarouselItemData {
     };
     isViewAll?: boolean;
 }
+
+export interface MonthlyReportData {
+    id: string;
+    deliveries: number;
+    items: number;
+    price: number;
+}

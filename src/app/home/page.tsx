@@ -1,8 +1,9 @@
 'use client';
 
-import SectionTitle from '@/components/common/SectionTitle';
 import FullContainer from '@/components/layout/FullContainer';
 import { Button } from '@/components/ui/button';
+import OrderHistory from '@/features/delivery-history/components/DeliveryHistory';
+import MonthlyReport from '@/features/report/components/MonthlyReport';
 import WeeklyReport from '@/features/report/components/WeeklyReport';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +12,7 @@ export default function App() {
     return (
         <FullContainer headerType="home">
             <div className="space-y-8">
-                {/* <section className="px-4">
+                <section className="px-4">
                     <div className="p-4 rounded-20 border-2 border-blue-200 box-border bg-white mt-4">
                         <div className="flex justify-between">
                             <p className="text-slate-500 text-sm font-medium">
@@ -39,57 +40,11 @@ export default function App() {
                             </Link>
                         </Button>
                     </div>
-                </section> */}
-                {/* <section className="px-4">
-                    <SectionTitle
-                        title="숫자로 보는 이번달"
-                        hasLink={true}
-                        linkText="통계 보기"
-                        linkHref=""
-                    />
-                    <div className="p-4 rounded-20 border-none box-border bg-white flex gap-12 mt-4">
-                        <div className="flex flex-col gap-1">
-                            <p className="text-sm text-slate-900 font-normal">
-                                배달 횟수
-                            </p>
-                            <p className="text-lg font-semibold text-slate-900">
-                                18번
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <p className="text-sm text-slate-900 font-normal">
-                                음식 개수
-                            </p>
-                            <p className="text-lg font-semibold text-slate-900">
-                                64개
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <p className="text-sm text-slate-900 font-normal">
-                                소비 금액
-                            </p>
-                            <p className="text-lg font-semibold text-slate-900">
-                                136000원
-                            </p>
-                        </div>
-                    </div>
-                </section> */}
-                <section>
-                    {/* <SectionTitle
-                        title="주간 리포트"
-                        hasLink={true}
-                        linkText="전체 보기"
-                        linkHref=""
-                        hasPadding={true}
-                    /> */}
-                    <WeeklyReport />
                 </section>
-                {/* <section className="px-4">
-                    <SectionTitle title="기록 된 배달 내역" hasLink={false} />
-                    <div>
-                        <OrderHistory pageSize={3} />
-                    </div>
-                </section> */}
+
+                <MonthlyReport />
+                <WeeklyReport />
+                <OrderHistory pageSize={3} />
             </div>
         </FullContainer>
     );

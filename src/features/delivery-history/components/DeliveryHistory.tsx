@@ -11,6 +11,7 @@ import Spiiner from '@/components/Spinner';
 import FloatingButton from '@/components/FloatingButton';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import SectionTitle from '@/components/common/SectionTitle';
 
 interface OrderHistoryProps {
     pageSize?: number; // 한 번에 로드할 아이템 수
@@ -25,7 +26,9 @@ const OrderHistoryItem: React.FC<{ item: OrderHistoryType }> = ({ item }) => (
                 포함 {item.count}개의 메뉴
             </p>
         </div>
-        <p className="text-blue-500 font-semibold text-xl">{item.amount}원</p>
+        <p className="text-blue-500 font-semibold text-xl">
+            {item.amount.toLocaleString()}원
+        </p>
         <Button
             className="w-full bg-blue-50 mt-3 p-6 text-blue-500 text-base"
             variant="ghost"
@@ -43,7 +46,6 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
         isFetchingNextPage,
         isLoading,
         isError,
-        error,
     } = useInfiniteQuery({
         queryKey: ['orderHistory', pageSize.toString()],
         queryFn: ({ pageParam }: { pageParam: number }) =>
@@ -60,7 +62,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
     const router = useRouter();
     const handleAddOrder = () => {
         // 라우터 이동 또는 다른 로직
-        router.push('#');
+        router.push('/add-history');
     };
 
     // 미리 보기용으로 추가데이터를 가져오기 때문에 마지막 인덱스 제거
@@ -102,44 +104,49 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
     }
 
     return (
-        <div
-            className={`${shouldShowBlur ? 'fade-blur-bottom' : ''} ${isFetchingNextPage ? 'loading' : ''}`}
-        >
-            <InfiniteScroll
-                items={processedItems}
-                loadMore={loadMore}
-                hasMore={hasNextPage || false}
-                loading={isFetchingNextPage}
-                orientation="vertical"
-                renderItem={(item: OrderHistoryType) => (
-                    <OrderHistoryItem item={item} />
-                )}
-                options={{
-                    align: 'start',
-                    containScroll: 'trimSnaps',
-                    dragFree: false,
-                    slidesToScroll: 1,
-                }}
-            />
-            {!isFetchingNextPage && (
-                <FloatingButton
-                    className="left-1/2 transform -translate-x-1/2 py-4 px-8 bg-blue-500 rounded-[32]"
-                    onClick={handleAddOrder}
+        <section className="px-4 pb-4">
+            <SectionTitle title="기록 된 배달 내역" hasLink={false} />
+            <div>
+                <div
+                    className={`${shouldShowBlur ? 'fade-blur-bottom' : ''} ${isFetchingNextPage ? 'loading' : ''}`}
                 >
-                    <div className="flex">
-                        <Image
-                            src="add.svg"
-                            alt="내역 추가하기"
-                            width={24}
-                            height={24}
-                        />
-                        <p className="font-medium text-white text-base">
-                            내역 추가하기
-                        </p>
-                    </div>
-                </FloatingButton>
-            )}
-        </div>
+                    <InfiniteScroll
+                        items={processedItems}
+                        loadMore={loadMore}
+                        hasMore={hasNextPage || false}
+                        loading={isFetchingNextPage}
+                        orientation="vertical"
+                        renderItem={(item: OrderHistoryType) => (
+                            <OrderHistoryItem item={item} />
+                        )}
+                        options={{
+                            align: 'start',
+                            containScroll: 'trimSnaps',
+                            dragFree: false,
+                            slidesToScroll: 1,
+                        }}
+                    />
+                    {!isFetchingNextPage && (
+                        <FloatingButton
+                            className="left-1/2 transform -translate-x-1/2 py-4 px-8 bg-blue-500 rounded-[32]"
+                            onClick={handleAddOrder}
+                        >
+                            <div className="flex">
+                                <Image
+                                    src="add.svg"
+                                    alt="내역 추가하기"
+                                    width={24}
+                                    height={24}
+                                />
+                                <p className="font-medium text-white text-base">
+                                    내역 추가하기
+                                </p>
+                            </div>
+                        </FloatingButton>
+                    )}
+                </div>
+            </div>
+        </section>
     );
 };
 

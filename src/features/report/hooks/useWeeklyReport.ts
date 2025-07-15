@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import type { CarouselApi } from '@/components/ui/carousel';
 
-import { reportApi } from '../api/weeklyReport';
+import { weeklyReportApi } from '../api/weeklyReport';
 import { queryKeys } from '@/lib/queryKeys';
 
 export const useWeeklyReport = () => {
@@ -12,7 +12,7 @@ export const useWeeklyReport = () => {
 
     const { data, isLoading, error } = useQuery({
         queryKey: queryKeys.reports.weekly.queryKey,
-        queryFn: reportApi.getWeeklyReportData,
+        queryFn: weeklyReportApi.getWeeklyReportData,
         staleTime: 1000 * 60 * 5,
     });
 

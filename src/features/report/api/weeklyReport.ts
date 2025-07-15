@@ -1,6 +1,6 @@
 import { CarouselItemData } from '../types';
 
-export const reportApi = {
+export const weeklyReportApi = {
     getWeeklyReportData: async (): Promise<CarouselItemData[]> => {
         // TODO: 실제 API 호출
         // return await fetch('/api/reports/weekly').then(res => res.json());

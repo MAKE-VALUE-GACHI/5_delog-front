@@ -9,5 +9,6 @@ export const queryKeys = createQueryKeyStore({
     reports: {
         all: null,
         weekly: null,
+        monthly: null,
     },
 });
