@@ -44,8 +44,8 @@ const InfiniteScroll = <T,>({
                 }
             },
             {
-                root: null, // viewport를 root로 사용 (페이지 전체 스크롤)
-                rootMargin: '100px', // 로딩 엘리먼트가 100px 전에 보이면 로딩 시작
+                root: null,
+                rootMargin: '30px', // 로딩 엘리먼트가 100px 전에 보이면 로딩 시작
                 threshold: 0.1,
             }
         );

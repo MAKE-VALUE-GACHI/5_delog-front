@@ -90,7 +90,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
     return (
         <section className="px-4 pb-4">
             <SectionTitle title="기록 된 배달 내역" hasLink={false} />
-            <div className="relative">
+            <div className="relative mt-4">
                 <div
                     className={`${shouldShowBlur ? 'fade-blur-bottom' : ''} ${isFetchingNextPage ? 'loading' : ''}`}
                 >
@@ -108,7 +108,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
 
                 {!isFetchingNextPage && (
                     <FloatingButton
-                        className="left-1/2 transform -translate-x-1/2 py-4 px-8 bg-blue-500 rounded-[32px] fixed bottom-4"
+                        className="left-1/2 transform -translate-x-1/2 py-4 px-8 bg-blue-500 hover:bg-blue-600 rounded-[32px] fixed bottom-4"
                         onClick={handleAddOrder}
                     >
                         <div className="flex">

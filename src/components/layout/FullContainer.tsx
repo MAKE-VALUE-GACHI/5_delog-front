@@ -13,12 +13,7 @@ export default function FullContainer({
     headerType = 'home',
 }: ContainerProps) {
     return (
-        <div
-            className={cn(
-                'min-h-screen max-w-[390px] mx-auto border-l border-r box-border',
-                bg
-            )}
-        >
+        <div className={cn('border-l border-r ', bg)}>
             <Header type={headerType} />
             <main>{children}</main>
         </div>

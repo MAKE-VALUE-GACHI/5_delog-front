@@ -23,8 +23,8 @@ export default function AIReport() {
                 <p className="text-xl text-blue-500 font-semibold">
                     배달앱 마케팅 팀이 좋아하겠네요.
                 </p>
-                <Button className="w-full bg-blue-50 mt-3 p-6" variant="ghost">
-                    <Link href="#" className="text-blue-500">
+                <Button className="w-full bg-blue-50 mt-3 p-6 hover:bg-blue-100">
+                    <Link href="#" className="text-blue-500 hover:bg-blue-600">
                         요약 확인하기
                     </Link>
                 </Button>

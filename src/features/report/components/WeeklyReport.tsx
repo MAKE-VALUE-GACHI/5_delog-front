@@ -15,7 +15,7 @@ export default function WeeklyReport() {
     return (
         <section>
             <SectionTitle
-                title="주간 리포트"
+                title="이전 주간 리포트"
                 hasLink={true}
                 linkText="전체 보기"
                 linkHref=""
