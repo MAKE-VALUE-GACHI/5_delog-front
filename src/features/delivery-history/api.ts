@@ -63,7 +63,6 @@ export const fetchOrderHistory = async ({
 
     const startIndex = pageParam;
 
-    // 첫 번째 호출인지 확인
     const isFirstCall = pageParam === 0;
 
     // 첫 번째 호출은 1개, 이후는 pageSize개

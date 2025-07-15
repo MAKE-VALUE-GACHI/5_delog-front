@@ -1,11 +1,9 @@
 import SectionTitle from '@/components/common/SectionTitle';
 import { useMonthlyReport } from '../hooks/useMonthlyReport';
-import Spinner from '@/components/Spinner';
 
 export default function MonthlyReport() {
-    const { data, isLoading, error } = useMonthlyReport();
+    const { data, error } = useMonthlyReport();
 
-    if (isLoading) return <Spinner />;
     if (error || !data) return <div>데이터를 불러오는 데 실패했습니다.</div>;
 
     return (

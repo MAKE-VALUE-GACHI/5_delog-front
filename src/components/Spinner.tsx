@@ -10,7 +10,7 @@ export default function Spinner({
     const positionClasses = {
         center: 'absolute inset-0 m-auto',
         'bottom-offset':
-            'absolute bottom-40 left-1/2 transform -translate-x-1/2',
+            'absolute bottom-100 left-1/2 transform -translate-x-1/2',
     };
 
     return (

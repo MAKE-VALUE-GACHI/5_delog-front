@@ -1,16 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { EngineType } from 'embla-carousel';
-import { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
-import useEmblaCarousel from 'embla-carousel-react';
-import Spiiner from '../Spinner';
+import React, { useCallback, useEffect, useRef } from 'react';
+import Spinner from '../Spinner';
 
 type PropType<T> = {
     items: T[];
     loadMore: () => Promise<T[]>;
     hasMore: boolean;
     loading?: boolean;
-    options?: EmblaOptionsType;
-    orientation?: 'horizontal' | 'vertical';
     renderItem: (item: T, index: number) => React.ReactNode;
     renderLoading?: () => React.ReactNode;
     className?: string;
@@ -21,165 +16,73 @@ const InfiniteScroll = <T,>({
     loadMore,
     hasMore,
     loading = false,
-    options,
-    orientation = 'horizontal',
     renderItem,
     renderLoading,
     className,
 }: PropType<T>) => {
-    const scrollListenerRef = useRef<() => void>(() => undefined);
-    const listenForScrollRef = useRef(true);
-    const hasMoreToLoadRef = useRef(hasMore);
-    const [currentItems, setCurrentItems] = useState(items);
-    const [loadingMore, setLoadingMore] = useState(false);
+    const loadingRef = useRef<HTMLDivElement>(null);
+    const isLoadingRef = useRef(false);
 
-    const [emblaRef, emblaApi] = useEmblaCarousel({
-        ...options,
-        axis: orientation === 'vertical' ? 'y' : 'x',
-        watchSlides: emblaApi => {
-            const reloadEmbla = (): void => {
-                const oldEngine = emblaApi.internalEngine();
+    // Intersection Observer를 사용한 무한 스크롤
+    useEffect(() => {
+        if (!loadingRef.current || !hasMore || loading) return;
 
-                emblaApi.reInit();
-                const newEngine = emblaApi.internalEngine();
-                const copyEngineModules: (keyof EngineType)[] = [
-                    'scrollBody',
-                    'location',
-                    'offsetLocation',
-                    'previousLocation',
-                    'target',
-                ];
-                copyEngineModules.forEach(engineModule => {
-                    Object.assign(
-                        newEngine[engineModule],
-                        oldEngine[engineModule]
-                    );
-                });
+        const observer = new IntersectionObserver(
+            async entries => {
+                const [entry] = entries;
 
-                newEngine.translate.to(oldEngine.location.get());
-                const { index } = newEngine.scrollTarget.byDistance(0, false);
-                newEngine.index.set(index);
-                newEngine.animation.start();
+                if (entry.isIntersecting && !isLoadingRef.current) {
+                    isLoadingRef.current = true;
 
-                setLoadingMore(false);
-                listenForScrollRef.current = true;
-            };
-
-            const reloadAfterPointerUp = (): void => {
-                emblaApi.off('pointerUp', reloadAfterPointerUp);
-                reloadEmbla();
-            };
-
-            const engine = emblaApi.internalEngine();
-
-            if (hasMoreToLoadRef.current && engine.dragHandler.pointerDown()) {
-                const boundsActive = engine.limit.reachedMax(
-                    engine.target.get()
-                );
-                engine.scrollBounds.toggleActive(boundsActive);
-                emblaApi.on('pointerUp', reloadAfterPointerUp);
-            } else {
-                reloadEmbla();
-            }
-        },
-    });
-
-    const onScroll = useCallback(
-        (emblaApi: EmblaCarouselType) => {
-            if (!listenForScrollRef.current) return;
-
-            setLoadingMore(loadingMore => {
-                const lastSlide = emblaApi.slideNodes().length - 1;
-                const lastSlideInView = emblaApi
-                    .slidesInView()
-                    .includes(lastSlide);
-                const shouldLoadMore =
-                    !loadingMore && lastSlideInView && hasMoreToLoadRef.current;
-
-                if (shouldLoadMore) {
-                    listenForScrollRef.current = false;
-
-                    loadMore()
-                        .then(newItems => {
-                            setCurrentItems(prev => [...prev, ...newItems]);
-                        })
-                        .catch(error => {
-                            console.error('Failed to load more items:', error);
-                            listenForScrollRef.current = true;
-                            setLoadingMore(false);
-                        });
+                    try {
+                        await loadMore();
+                    } catch (error) {
+                        console.error('Failed to load more items:', error);
+                    } finally {
+                        isLoadingRef.current = false;
+                    }
                 }
-
-                return loadingMore || lastSlideInView;
-            });
-        },
-        [loadMore]
-    );
-
-    const addScrollListener = useCallback(
-        (emblaApi: EmblaCarouselType) => {
-            scrollListenerRef.current = () => onScroll(emblaApi);
-            emblaApi.on('scroll', scrollListenerRef.current);
-        },
-        [onScroll]
-    );
-
-    useEffect(() => {
-        if (!emblaApi) return;
-        addScrollListener(emblaApi);
-
-        const onResize = () => emblaApi.reInit();
-        window.addEventListener('resize', onResize);
-        emblaApi.on('destroy', () =>
-            window.removeEventListener('resize', onResize)
+            },
+            {
+                root: null, // viewport를 root로 사용 (페이지 전체 스크롤)
+                rootMargin: '100px', // 로딩 엘리먼트가 100px 전에 보이면 로딩 시작
+                threshold: 0.1,
+            }
         );
-    }, [emblaApi, addScrollListener]);
 
-    useEffect(() => {
-        hasMoreToLoadRef.current = hasMore;
-    }, [hasMore]);
+        observer.observe(loadingRef.current);
 
-    useEffect(() => {
-        setCurrentItems(items);
-    }, [items]);
+        return () => {
+            observer.disconnect();
+        };
+    }, [loadMore, hasMore, loading]);
 
     return (
-        <div
-            className={`mx-auto mt-2 ${
-                orientation === 'vertical' ? '' : 'max-w-full'
-            } ${className || ''}`}
-        >
-            <div className="overflow-hidden" ref={emblaRef}>
-                <div
-                    className={`flex ${
-                        orientation === 'vertical' ? 'flex-col -mt-4' : '-ml-4'
-                    }`}
-                >
-                    {currentItems.map((item, index) => (
-                        <div
-                            className={`flex-none min-w-0 ${
-                                orientation === 'vertical'
-                                    ? 'w-full h-[calc(100%-4rem)] pt-4'
-                                    : 'w-full pl-4'
-                            }`}
-                            key={index}
-                        >
-                            {renderItem(item, index)}
-                        </div>
-                    ))}
-                    {hasMore && (loadingMore || loading) && (
-                        <div
-                            className={`loading-above-blur relative flex-none min-w-0 flex items-center justify-center ${
-                                orientation === 'vertical'
-                                    ? 'w-full h-40 pt-4'
-                                    : 'w-60 h-60 pl-4'
-                            }`}
-                        >
-                            {renderLoading ? renderLoading() : <Spiiner />}
-                        </div>
-                    )}
-                </div>
+        <div className={`w-full ${className || ''}`}>
+            {/* 아이템들 렌더링 */}
+            <div className="flex flex-col gap-2">
+                {items.map((item, index) => (
+                    <div key={index} className="w-full">
+                        {renderItem(item, index)}
+                    </div>
+                ))}
             </div>
+
+            {/* 로딩 인디케이터 */}
+            {hasMore && (
+                <div
+                    ref={loadingRef}
+                    className="loading-above-blur relative flex items-center justify-center w-full h-20 mt-4"
+                >
+                    {loading || isLoadingRef.current ? (
+                        renderLoading ? (
+                            renderLoading()
+                        ) : (
+                            <Spinner />
+                        )
+                    ) : null}
+                </div>
+            )}
         </div>
     );
 };

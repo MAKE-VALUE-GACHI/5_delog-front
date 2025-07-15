@@ -4,13 +4,12 @@ import {
     CarouselItem,
 } from '@/components/ui/carousel';
 import { useWeeklyReport } from '../hooks/useWeeklyReport';
-import Spinner from '@/components/Spinner';
+
 import SectionTitle from '@/components/common/SectionTitle';
 
 export default function WeeklyReport() {
-    const { carouselData, isLoading, error, setApi } = useWeeklyReport();
+    const { carouselData, error, setApi } = useWeeklyReport();
 
-    if (isLoading) return <Spinner />;
     if (error) return <div>데이터를 불러오는 데 실패했습니다.</div>;
 
     return (
