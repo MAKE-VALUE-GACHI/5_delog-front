@@ -1,8 +1,8 @@
 export interface CarouselItemData {
     id: string;
-    price: number;
-    amount: number;
-    date: {
+    price?: number;
+    amount?: number;
+    date?: {
         year: number;
         month: number;
         week: number;

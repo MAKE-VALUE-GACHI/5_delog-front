@@ -18,10 +18,7 @@ export const useWeeklyReport = () => {
 
     // useMemo로 불필요한 재생성 방지
     const carouselData = useMemo(
-        () => [
-            ...(data || []),
-            { id: 'viewAll', title: '전체보기', isViewAll: true },
-        ],
+        () => [...(data || []), { id: 'viewAll', isViewAll: true }],
         [data]
     );
 
