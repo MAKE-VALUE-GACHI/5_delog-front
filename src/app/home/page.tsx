@@ -3,12 +3,7 @@
 import SectionTitle from '@/components/common/SectionTitle';
 import FullContainer from '@/components/layout/FullContainer';
 import { Button } from '@/components/ui/button';
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-} from '@/components/ui/carousel';
-import OrderHistory from '@/features/orders/components/OrderHistory';
+import WeeklyReport from '@/features/report/components/WeeklyReport';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,7 +11,7 @@ export default function App() {
     return (
         <FullContainer headerType="home">
             <div className="space-y-8">
-                <section className="px-4">
+                {/* <section className="px-4">
                     <div className="p-4 rounded-20 border-2 border-blue-200 box-border bg-white mt-4">
                         <div className="flex justify-between">
                             <p className="text-slate-500 text-sm font-medium">
@@ -44,8 +39,8 @@ export default function App() {
                             </Link>
                         </Button>
                     </div>
-                </section>
-                <section className="px-4">
+                </section> */}
+                {/* <section className="px-4">
                     <SectionTitle
                         title="숫자로 보는 이번달"
                         hasLink={true}
@@ -78,55 +73,23 @@ export default function App() {
                             </p>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <section>
-                    <SectionTitle
+                    {/* <SectionTitle
                         title="주간 리포트"
                         hasLink={true}
                         linkText="전체 보기"
                         linkHref=""
                         hasPadding={true}
-                    />
-                    <Carousel
-                        orientation="horizontal"
-                        opts={{
-                            align: 'start',
-                            loop: false,
-                            slidesToScroll: 1,
-                            dragFree: false,
-                            skipSnaps: false,
-                        }}
-                    >
-                        <CarouselContent className="">
-                            <CarouselItem className="">
-                                <div className="p-4 rounded-20 border-none box-border bg-white flex gap-12 mt-4">
-                                    Slide1
-                                </div>
-                            </CarouselItem>
-                            <CarouselItem className="">
-                                <div className="p-4 rounded-20 border-none box-border bg-white flex gap-12 mt-4">
-                                    Slide2
-                                </div>
-                            </CarouselItem>
-                            <CarouselItem className="">
-                                <div className="p-4 rounded-20 border-none box-border bg-white flex gap-12 mt-4">
-                                    Slide3
-                                </div>
-                            </CarouselItem>
-                            <CarouselItem className="">
-                                <div className="p-4 rounded-20 border-none box-border bg-white flex gap-12 mt-4">
-                                    Slide4
-                                </div>
-                            </CarouselItem>
-                        </CarouselContent>
-                    </Carousel>
+                    /> */}
+                    <WeeklyReport />
                 </section>
-                <section className="px-4">
+                {/* <section className="px-4">
                     <SectionTitle title="기록 된 배달 내역" hasLink={false} />
                     <div>
                         <OrderHistory pageSize={3} />
                     </div>
-                </section>
+                </section> */}
             </div>
         </FullContainer>
     );

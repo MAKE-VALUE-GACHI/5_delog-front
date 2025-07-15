@@ -6,4 +6,8 @@ export const queryKeys = createQueryKeyStore({
         list: (pageSize: number) => [pageSize],
         infinite: (pageSize: number) => [pageSize],
     },
+    reports: {
+        all: null,
+        weekly: null,
+    },
 });

@@ -26,11 +26,11 @@ export default function Header({ className, type, title }: HeaderProps) {
             >
                 <Link href="#">
                     <Image
-                        className="hover:cursor-pointer"
                         src="/settings.svg"
                         alt="환경설정"
                         width={24}
                         height={24}
+                        className="w-6 h-6"
                     />
                 </Link>
                 <div className="text-[#0F172A] text-5 font-semibold">
