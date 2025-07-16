@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import React from 'react';
+import Link from 'next/link';
 
 interface HeaderProps {
     className?: string;

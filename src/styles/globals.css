@@ -149,3 +149,9 @@
         @apply backdrop-blur-[2px] pointer-events-none;
     }
 }
+
+.recharts-cartesian-axis-tick-value {
+    fill: theme('colors.slate.600') !important;
+    font-size: theme('fontSize.sm') !important;
+    font-weight: theme('fontWeight.medium') !important;
+}
