@@ -43,6 +43,8 @@
     --color-sidebar-ring: var(--sidebar-ring);
 
     /* ---------- shadcn/ui -------------- */
+
+    --radius-20: 20px;
 }
 
 :root {
@@ -124,5 +126,26 @@
     }
     body {
         @apply bg-background text-foreground;
+    }
+}
+@layer components {
+    .fade-blur-bottom {
+        @apply relative;
+    }
+
+    .fade-blur-bottom.loading::after {
+        display: none;
+    }
+
+    .fade-blur-bottom::after {
+        content: '';
+        @apply absolute bottom-0 left-0 right-0 h-70 z-10;
+        background: linear-gradient(
+            to top,
+            rgba(255, 255, 255, 0.3) 0%,
+            rgba(255, 255, 255, 0.15) 40%,
+            transparent 100%
+        );
+        @apply backdrop-blur-[2px] pointer-events-none;
     }
 }
