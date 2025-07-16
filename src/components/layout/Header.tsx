@@ -3,7 +3,6 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import React from 'react';
 import Link from 'next/link';
@@ -94,9 +93,7 @@ export default function Header({
                         className="w-5 h-5 cursor-pointer"
                         onClick={handlePrev}
                     />
-                    <span className="text-lg font-semibold">
-                        {year}년 {month}월
-                    </span>
+                    <span className="text-lg font-semibold">{month}월</span>
                     <ChevronRight
                         className="w-5 h-5 cursor-pointer"
                         onClick={handleNext}

@@ -1,7 +1,7 @@
 'use client';
 
 import FullContainer from '@/components/layout/FullContainer';
-import OrderHistory from '@/features/delivery-history/components/DeliveryHistory';
+import DeliveryHistory from '@/features/delivery-history/components/DeliveryHistory';
 import MonthlyReport from '@/features/report/components/MonthlyReport';
 import WeeklyReport from '@/features/report/components/WeeklyReport';
 import AIReport from './AIReport';
@@ -13,7 +13,7 @@ export default function App() {
                 <AIReport />
                 <MonthlyReport />
                 <WeeklyReport />
-                <OrderHistory pageSize={3} />
+                <DeliveryHistory pageSize={3} />
             </div>
         </FullContainer>
     );

@@ -1,9 +1,12 @@
 'use client';
 
 import Container from '@/components/layout/Container';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import StatsCalendar from './StatsCalendar';
-import StatsChart from './StatsChart';
+import StatsSummary from './StatsSummary';
+import DeliveryList from './StatsList';
+import WeeklySpendingChart from './WeeklySpendingChart';
+import AverageOrderValueChart from './AverageOrderValueChart';
 
 export default function Stats() {
     const today = new Date();
@@ -25,13 +28,18 @@ export default function Stats() {
             month={month}
             onMonthChange={handleMonthChange}
         >
-            <StatsCalendar
-                year={year}
-                month={month}
-                selectedDay={day}
-                onSelect={setDay}
-            />
-            <StatsChart />
+            <div className="space-y-8 pb-20">
+                <StatsSummary />
+                <StatsCalendar
+                    year={year}
+                    month={month}
+                    selectedDay={day}
+                    onSelect={setDay}
+                />
+                <DeliveryList />
+                <WeeklySpendingChart />
+                <AverageOrderValueChart />
+            </div>
         </Container>
     );
 }
