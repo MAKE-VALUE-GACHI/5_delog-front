@@ -13,5 +13,6 @@ export const queryKeys = createQueryKeyStore({
     },
     stats: {
         all: null,
+        calendar: (year: number, month: number) => [year, month],
     },
 });

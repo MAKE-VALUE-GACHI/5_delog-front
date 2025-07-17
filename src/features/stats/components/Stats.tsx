@@ -4,7 +4,7 @@ import Container from '@/components/layout/Container';
 import { useState } from 'react';
 import StatsCalendar from './StatsCalendar';
 import StatsSummary from './StatsSummary';
-import DeliveryList from './StatsList';
+// import DeliveryList from './StatsList';
 import WeeklySpendingChart from './WeeklySpendingChart';
 import AverageOrderValueChart from './AverageOrderValueChart';
 
@@ -36,7 +36,7 @@ export default function Stats() {
                     selectedDay={day}
                     onSelect={setDay}
                 />
-                <DeliveryList />
+                {/* <DeliveryList /> */}
                 <WeeklySpendingChart />
                 <AverageOrderValueChart />
             </div>
