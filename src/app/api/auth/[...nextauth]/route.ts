@@ -1,10 +1,59 @@
-import NextAuth from "next-auth";
-import { authOptions } from "@/lib/auth";
+import NextAuth, { NextAuthOptions } from 'next-auth'; // NextAuthOptions 타입 import
+import KakaoProvider from 'next-auth/providers/kakao';
+import NaverProvider from 'next-auth/providers/naver';
+import GoogleProvider from 'next-auth/providers/google';
+
+interface ProviderOptions {
+    clientId: string;
+    clientSecret: string;
+}
+
+interface AllProviderOptions {
+    kakao: ProviderOptions;
+    naver: ProviderOptions;
+    google: ProviderOptions;
+}
+
+const providerOptions: AllProviderOptions = {
+    kakao: {
+        clientId: process.env.KAKAO_ID!,
+        clientSecret: process.env.KAKAO_SECRET!,
+    },
+    naver: {
+        clientId: process.env.NAVER_ID!,
+        clientSecret: process.env.NAVER_SECRET!,
+    },
+    google: {
+        clientId: process.env.GOOGLE_ID!,
+        clientSecret: process.env.GOOGLE_SECRET!,
+    },
+};
+export const authOptions: NextAuthOptions = {
+    // ← 전체 옵션 객체에 타입 지정
+    providers: [
+        KakaoProvider(providerOptions.kakao),
+        NaverProvider(providerOptions.naver),
+        GoogleProvider(providerOptions.google),
+    ],
+    session: {
+        strategy: 'jwt' as const,
+        maxAge: 60 * 60 * 24,
+    },
+    pages: {
+        signIn: '/auth/social',
+    },
+    callbacks: {
+        signIn: async () => {
+            return true;
+        },
+        jwt: async ({ token }) => {
+            return token;
+        },
+        session: async ({ session }) => {
+            return session;
+        },
+    },
+};
 
 const handler = NextAuth(authOptions);
-
-export const GET = handler;
-export const POST = handler;
-
-// 캐싱 문제 방지용 옵션
-export const dynamic = "force-dynamic";
+export { handler as GET, handler as POST };
