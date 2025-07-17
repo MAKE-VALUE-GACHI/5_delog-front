@@ -149,3 +149,23 @@
         @apply backdrop-blur-[2px] pointer-events-none;
     }
 }
+
+.recharts-cartesian-axis-tick-value {
+    fill: theme('colors.slate.600') !important;
+    font-size: theme('fontSize.sm') !important;
+    font-weight: theme('fontWeight.medium') !important;
+}
+
+.dashed-long {
+    border-style: dashed;
+    border-width: 1px;
+    border-color: #cbd5e1;
+    border-radius: 8px;
+    /* 아래가 핵심! */
+    border-image: repeating-linear-gradient(
+            90deg,
+            #cbd5e1 0 24px,
+            transparent 24px 48px
+        )
+        1;
+}

@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+
+- tawilind4.0 버전으로 CSS를 작성해줘
+- shadcn/ui 컴포넌트를 사용해줘
+- 파일명은 Pascal case, 폴더명은 kebab-case 로 작성해줘
+- api 요청은 react-query로 작성해주고 try/catch로 작성해줘 에러는 반드시 작성해줘

@@ -31,7 +31,7 @@ const allMockData: OrderHistory[] = [
     },
     {
         id: '5',
-        date: '2025년 6월 25일',
+        date: '2025년 7월 25일',
         amount: 25000,
         order: '우삼겹메밀면 누들면 1개',
         count: 4,

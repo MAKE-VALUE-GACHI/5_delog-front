@@ -4,6 +4,7 @@ import { fetchOrderHistory } from '../api';
 import {
     OrderHistory as OrderHistoryType,
     OrderHistoryResponse,
+    OrderHistoryProps,
 } from '../types';
 import InfiniteScroll from '@/components/common/InfiniteScroll';
 import Spinner from '@/components/Spinner';
@@ -13,11 +14,7 @@ import { useRouter } from 'next/navigation';
 import SectionTitle from '@/components/common/SectionTitle';
 import DeliveryMetrics from './DeliveryMetrics';
 
-interface OrderHistoryProps {
-    pageSize?: number;
-}
-
-const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
+export default function DeliveryHistory({ pageSize = 3 }: OrderHistoryProps) {
     const {
         data,
         fetchNextPage,
@@ -127,6 +124,4 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ pageSize = 3 }) => {
             </div>
         </section>
     );
-};
-
-export default OrderHistory;
+}

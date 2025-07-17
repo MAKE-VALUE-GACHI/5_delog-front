@@ -11,4 +11,8 @@ export const queryKeys = createQueryKeyStore({
         weekly: null,
         monthly: null,
     },
+    stats: {
+        all: null,
+        calendar: (year: number, month: number) => [year, month],
+    },
 });
